@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+  <h1>{{ book.title }}</h1>
+
+  <hr>
+
+  <p>
+    <strong>저자:</strong>
+    {{ book.author }}
+  </p>
+
+  <p>
+    <strong>회원 리뷰 평점:</strong>
+    {{ book.customer_review_rank }} / 10
+  </p>
+
+  <div class="mb-4">
+    <strong>도서 설명</strong>
+    <p>{{ book.description|linebreaks }}</p>
+  </div>
+
+  {% if book.author_info or book.author_works %}
+  <section class="card mb-4">
+    <div class="card-body">
+      <h2 class="h4">작가 정보</h2>
+
+      {% if book.author_image_url %}
+      <img src="{{ book.author_image_url }}" alt="{{ book.author }} 작가 사진" class="img-thumbnail mb-3"
+        style="max-width: 200px;">
+      {% endif %}
+
+      <h3 class="h5">{{ book.author }}</h3>
+
+      {% if book.author_info %}
+      <p>{{ book.author_info|linebreaks }}</p>
+      {% endif %}
+
+      {% if book.author_works %}
+      <h4 class="h6">대표 작품</h4>
+
+      <ul>
+        {% for work in book.author_works %}
+        <li>{{ work }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <p class="text-muted small">
+        작가 대표작과 작가 정보는 AI가 생성한 정보로,
+        정확하지 않을 수 있습니다.
+      </p>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if request.user.is_authenticated %}
+  <a href="{% url 'books:update' book.pk %}" class="btn btn-secondary">
+    수정
+  </a>
+
+  <form action="{% url 'books:delete' book.pk %}" method="POST" class="d-inline">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">
+      삭제
+    </button>
+  </form>
+  {% endif %}
+
+  <a href="{% url 'books:index' %}" class="btn btn-outline-primary">
+    목록으로
+  </a>
+</div>
+{% endblock %}
