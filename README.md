@@ -91,3 +91,21 @@ For open source projects, say how it is licensed.
 
 ## Project status
 If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+
+
+
+
+# 📌 회고 및 느낀 점
+
+> **작성자**: 소준호
+
+* **주요 역할 및 구현 내용**
+* `accounts` 앱의 전체적인 기능 및 인증 페이지 구현을 담당했습니다.
+* 수업을 통해 배운 Django의 `AbstractUser`를 커스텀하여 서비스 요구사항에 맞는 추가 필드(독서량, 관심 장르 등)를 직접 설계하고 마이그레이션하는 과정을 더욱 깊이 있게 익힐 수 있었습니다.
+* 회원가입 및 정보 수정 시 사용자가 여러 관심 장르를 체크박스로 다중 선택할 수 있도록 구현하고, 선택된 값들을 데이터베이스에 문자열 형태로 변환하여 저장하는 로직을 적용했습니다.
+* 비밀번호 변경 후 보안 유지를 위해 세션이 강제로 만료되는 현상을 방지하고자 `update_session_auth_hash`를 적용하여 사용자 경험을 개선했습니다.
+
+
+* **아쉬운 점 및 향후 계획**
+* 기능별로 브랜치(`branch`)를 나누어 개발을 이어가는 과정에서 커밋(Commit)이나 머지(Merge) 과정이 복잡하게 엉키는 상황을 겪었습니다.
+* 협업 시 발생할 수 있는 Git 충돌을 유연하게 해결할 수 있도록 관련 숙련도를 좀 더 높여야겠다는 필요성을 느꼈습니다.
