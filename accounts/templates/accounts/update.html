@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1 class="mb-4">회원정보 수정</h1>
+  <form action="{% url 'accounts:update' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-primary">저장</button>
+      <a href="{% url 'accounts:change_password' %}" class="btn btn-outline-secondary">비밀번호 변경</a>
+    </div>
+  </form>
+{% endblock content %}
