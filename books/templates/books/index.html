@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>도서 목록</title>
+</head>
+<body>
+  <h1>도서 목록</h1>
+
+  {% for book in books %}
+    <div>
+      <h2>{{ book.title }}</h2>
+      <p>{{ book.author }}</p>
+    </div>
+  {% empty %}
+    <p>등록된 도서가 없습니다.</p>
+  {% endfor %}
+</body>
+</html>
